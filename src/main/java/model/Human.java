@@ -1,7 +1,11 @@
 package main.java.model;
 
 
-public class Human implements Comparable<Human> {
+import main.java.compareFunctions.MyComparable;
+
+import static main.java.Main.comparing;
+
+public class Human extends MyComparable<Human> {
     private String name;
     private int age;
 
@@ -31,14 +35,26 @@ public class Human implements Comparable<Human> {
         return "{" + name + "," + age + "}";
     }
 
-    @Override
-    // use this function if i want compare humans by age
-//    public int compareTo(Human h) {
-//        return age - h.age;
-//    }
+    //  use this function if You have compare two object ages...
+    //  @Override
+    //    public int myCompareTo(Human second) {
+    //        return comparing(this.age - second.age);
+    //    }
 
-    // and use this function if i want compare humans by name
-    public int compareTo(Human h) {
-        return name.compareTo(h.name);
+    // and use this one function if You have compare two objects name.
+    @Override
+    public int myCompareTo(Human second) {
+        int result = this.getName().compareTo(second.getName());
+        int t = 0;
+
+        if (result > 0) {
+            t = 1;
+        }
+        if (result < 0) {
+            t = -1;
+        }
+        return t;
+
+
     }
 }
